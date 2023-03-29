@@ -1,7 +1,7 @@
 {
-  "singleAttributePerLine": true,
-  "semi": false,
-  "arrowParens": "always",
-  "singleQuote": true,
-  "tabWidth": 4
+    "singleAttributePerLine": true,
+    "semi": false,
+    "arrowParens": "always",
+    "singleQuote": true,
+    "tabWidth": 2
 }
