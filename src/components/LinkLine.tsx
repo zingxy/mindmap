@@ -1,7 +1,7 @@
-import { QProps } from './Q'
+import { ControlPoint } from './Q'
 import React from 'react'
 
-function LinkLine(props: QProps) {
+function LinkLine(props: ControlPoint) {
     const { p1, p2, p3 } = props
     const points = `${p1.x},${p1.y} ${p2.x},${p2.y} ${p3.x},${p3.y}`
     return (

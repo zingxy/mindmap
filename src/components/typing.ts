@@ -1,6 +1,5 @@
-import { QProps } from './Q'
+import { ControlPoint } from './Q'
 
-const MARGIN = 15
 export interface Point {
     x: number
     y: number
@@ -21,6 +20,8 @@ export type MindMapTreeLayoutNode = {
     layoutChildren: MindMapTreeLayoutNode[]
 } & Point
 
+const GAP = 50 // 层间距
+const MARGIN = 15 // 节点距离， 实际上相邻会叠加
 // get layout information
 export function getLayoutArr(
     root: MindMapTreeNode,
@@ -97,12 +98,12 @@ export function computeChildrenPosition(root: MindMapTreeLayoutNode) {
         x: root.x + root.node.width,
         // 改变这个可以获得奇怪的效果
         // y: root.y + 0.5 * root.node.height,
-        y: root.y + 0.5 * root.layoutHeight,
+        y: root.y + 0.5 * totalHeight,
     }
     const originH = anchor.y - 0.5 * totalHeight
     let acc = 0
     for (const child of layoutChildren) {
-        child.x = anchor.x + 100
+        child.x = anchor.x + GAP
         child.y = originH + acc
         acc += child.layoutHeight
     }
@@ -112,7 +113,7 @@ export function computeChildrenPosition(root: MindMapTreeLayoutNode) {
 export function computeControlPoints(
     parent: MindMapTreeLayoutNode,
     child: MindMapTreeLayoutNode
-): QProps {
+): ControlPoint {
     const start = { x: 0, y: 0 }
     start.x = parent.x + parent.node.width
     start.y = 0.5 * parent.layoutHeight + parent.y
